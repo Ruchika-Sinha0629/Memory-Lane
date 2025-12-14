@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import CapsuleCard from "@/components/CapsuleCard";
 import { Capsule } from "@/types/capsule";
+import Footer from "@/components/Footer";
 
 export default function DashboardPage() {
   const { data: session } = useSession();

@@ -43,7 +43,7 @@ export default function Footer() {
                   Features
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/pricing" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
                   Pricing
                 </a>
@@ -52,7 +52,7 @@ export default function Footer() {
                 <a href="/blog" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
                   Blog
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
 
@@ -65,21 +65,21 @@ export default function Footer() {
                   Contact Us
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/help" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
                   Help Center
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="/privacy" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
                   Privacy Policy
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="/terms" className="text-gray-300 hover:text-purple-400 transition-colors duration-300">
                   Terms of Service
-                </a>
-              </li>
+                </a> */}
+              {/* </li> */}
             </ul>
           </div>
         </div>
