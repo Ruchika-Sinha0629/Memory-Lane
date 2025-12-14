@@ -4,7 +4,6 @@ import { dbConnect } from "@/lib/db";
 
 export async function GET(req: NextRequest) {
   const email = req.nextUrl.searchParams.get("email");
-
   if (!email) {
     return NextResponse.json({ capsules: [] });
   }
@@ -15,6 +14,7 @@ export async function GET(req: NextRequest) {
     $or: [
       { createdBy: email },
       { collaborators: email },
+      { recipients: email },
     ],
   }).sort({ createdAt: -1 });
 

@@ -18,10 +18,21 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
+  // Determine user permissions
   const canEdit =
     userEmail &&
+    (capsule.createdBy === userEmail || capsule.collaborators.includes(userEmail));
+
+  const canView =
+    userEmail &&
     (capsule.createdBy === userEmail ||
-      capsule.collaborators.includes(userEmail));
+      capsule.collaborators.includes(userEmail) ||
+      capsule.recipients.includes(userEmail) ||
+      capsule.privacy === "public");
+
+  if (!canView) {
+    return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+  }
 
   return NextResponse.json({ capsule, canEdit });
 }

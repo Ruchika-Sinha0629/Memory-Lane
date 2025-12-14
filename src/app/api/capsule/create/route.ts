@@ -23,17 +23,26 @@ export async function POST(req: Request) {
 }));
 
 
-  const capsule = await Capsule.create({
-    title: body.title,
-    content: body.content,
-    media: normalizedMedia,
-    recipients: body.recipients || [],
-    collaborators: body.collaborators || [],
-    theme: body.theme,
-    unlockDate: body.unlockDate,
-    privacy: body.privacy,
-    createdBy: body.createdBy,
-  });
+ const recipients = Array.isArray(body.recipients)
+  ? [...new Set(body.recipients)]
+  : [];
+
+const collaborators = Array.isArray(body.collaborators)
+  ? [...new Set(body.collaborators)]
+  : [];
+
+const capsule = await Capsule.create({
+  title: body.title,
+  content: body.content,
+  media: normalizedMedia,
+  recipients,
+  collaborators,
+  theme: body.theme,
+  unlockDate: body.unlockDate,
+  privacy: body.privacy,
+  createdBy: body.createdBy,
+});
+
 
   return NextResponse.json({ capsule });
 }

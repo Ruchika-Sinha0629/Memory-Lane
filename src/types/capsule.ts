@@ -14,5 +14,9 @@ export interface Capsule {
     type: "image" | "video" | "audio";
   }[];
 
-  reactions?: Record<string, number>;
+  reactions?: {
+    hearts?: string[]; 
+  };
+  summary?: string;   
+  caption?: string;   
 }

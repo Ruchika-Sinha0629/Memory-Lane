@@ -23,7 +23,7 @@ export default function RevealAnimation({
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="text-3xl font-bold text-center"
+        className="text-3xl font-bold text-center text-gray-800"
       >
         {title}
       </motion.h1>

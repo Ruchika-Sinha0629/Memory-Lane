@@ -15,8 +15,15 @@ const CapsuleSchema = new Schema(
 
     media: [MediaSchema],
 
-    recipients: [String], // emails
-    collaborators: [String], // emails
+    recipients: {
+      type: [String],
+      default: [],
+    },
+
+    collaborators: {
+      type: [String],
+      default: [],
+    },
 
     theme: String,
 
@@ -29,10 +36,21 @@ const CapsuleSchema = new Schema(
     unlockDate: { type: Date, required: true },
     isUnlocked: { type: Boolean, default: false },
 
-    reactions: { type: Object, default: {} },
+     reactions: {
+    hearts: { type: [String], default: [] },
+  },
 
-    // ✅ REQUIRED FOR DASHBOARD
-    createdBy: { type: String, required: true }, // creator email
+    summary: {
+  type: String,
+  default: "",
+},
+
+caption: {
+  type: String,
+  default: "",
+},
+
+    createdBy: { type: String, required: true }, 
   },
   { timestamps: true }
 );
