@@ -7,12 +7,13 @@ import CountdownTimer from "./CountDownTimer";
 
 interface CapsuleCardProps {
   capsule: Capsule;
+  canEdit: boolean; // creator OR collaborator (passed from parent)
 }
 
-export default function CapsuleCard({ capsule }: CapsuleCardProps) {
+export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
   const [isUnlocked, setIsUnlocked] = useState(capsule.isUnlocked);
 
-  // Poll the server every 30 seconds for unlock status
+  // 🔁 Poll server every 30s until unlocked
   useEffect(() => {
     if (isUnlocked) return;
 
@@ -23,6 +24,7 @@ export default function CapsuleCard({ capsule }: CapsuleCardProps) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ capsuleId: capsule._id }),
         });
+
         const data = await res.json();
         if (data.isUnlocked) {
           setIsUnlocked(true);
@@ -36,28 +38,49 @@ export default function CapsuleCard({ capsule }: CapsuleCardProps) {
   }, [capsule._id, isUnlocked]);
 
   return (
-    <div className="border rounded p-4 shadow space-y-2">
+    <div className="border rounded-lg p-4 shadow space-y-3">
       <h3 className="text-xl font-semibold">{capsule.title}</h3>
-      <p>Theme: {capsule.theme || "Others"}</p>
 
-      {!isUnlocked ? (
+      <p className="text-sm text-gray-600">
+        Theme: {capsule.theme || "Others"}
+      </p>
+
+      {/* 🔒 LOCKED STATE */}
+      {!isUnlocked && (
         <>
-           <CountdownTimer
-      unlockDate={capsule.unlockDate}
-      capsuleId={capsule._id}  // ✅ pass capsuleId
-      onUnlock={() => setIsUnlocked(true)} // auto-update when timer ends
-    />
-          <p className="text-gray-500">Capsule locked ⏳</p>
+          {/* ⏳ Countdown Timer */}
+          <CountdownTimer
+            unlockDate={capsule.unlockDate}
+            capsuleId={capsule._id}
+            onUnlock={() => setIsUnlocked(true)}
+          />
+
+          <p className="text-gray-500 text-sm">Capsule locked ⏳</p>
+
+          {/* ✏️ Edit (only creator / collaborators) */}
+          {canEdit && (
+            <Link
+              href={`/capsule/edit/${capsule._id}`}
+              className="inline-block text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+            >
+              ✏️ Edit Capsule
+            </Link>
+          )}
         </>
-      ) : (
-        <div className="flex gap-2 items-center">
-          <p className="text-green-600 font-semibold">Capsule unlocked 💌</p>
-          <br />
+      )}
+
+      {/* 🔓 UNLOCKED STATE */}
+      {isUnlocked && (
+        <div className="flex flex-col gap-2">
+          <p className="text-green-600 font-semibold">
+            Capsule unlocked 💌
+          </p>
+
           <Link
             href={`/capsule/${capsule._id}`}
-            className="bg-blue-600 text-white px-3 py-1 rounded"
+            className="inline-block text-sm bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
           >
-            View Capsule
+            👀 View Capsule
           </Link>
         </div>
       )}

@@ -81,8 +81,16 @@ export default function DashboardPage() {
           <h2 className="text-xl font-semibold">{theme}</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {themeCapsules.map((c) => (
-              <CapsuleCard key={c._id} capsule={c} />
-            ))}
+  <CapsuleCard
+    key={c._id}
+    capsule={c}
+    canEdit={
+      c.createdBy === session?.user?.email ||
+      c.collaborators?.includes(session?.user?.email ?? "")
+    }
+  />
+))}
+
           </div>
         </div>
       ))}

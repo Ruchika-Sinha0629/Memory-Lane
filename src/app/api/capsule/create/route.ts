@@ -7,16 +7,32 @@ export async function POST(req: Request) {
 
   const body = await req.json();
 
+  // ✅ Normalize media BEFORE saving
+  const normalizedMedia = (body.media || []).map((m: any) => ({
+  url: m.url,
+  type:
+    m.type === "image" || m.type === "video" || m.type === "audio"
+      ? m.type
+      : m.type.startsWith("image")
+      ? "image"
+      : m.type.startsWith("video")
+      ? "video"
+      : m.type.startsWith("audio")
+      ? "audio"
+      : "image",
+}));
+
+
   const capsule = await Capsule.create({
     title: body.title,
     content: body.content,
-    media: body.media || [],
+    media: normalizedMedia,
     recipients: body.recipients || [],
     collaborators: body.collaborators || [],
     theme: body.theme,
     unlockDate: body.unlockDate,
     privacy: body.privacy,
-    createdBy: body.createdBy, // ✅ MUST BE SAVED
+    createdBy: body.createdBy,
   });
 
   return NextResponse.json({ capsule });

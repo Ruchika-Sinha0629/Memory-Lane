@@ -5,6 +5,14 @@ export interface Capsule {
   theme?: string;
   unlockDate: string;
   isUnlocked: boolean;
+
+  createdBy: string;          
+  collaborators: string[];    
+
+  media?: {
+    url: string;
+    type: "image" | "video" | "audio";
+  }[];
+
   reactions?: Record<string, number>;
-  createdBy?: string;
 }

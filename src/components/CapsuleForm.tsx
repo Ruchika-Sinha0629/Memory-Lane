@@ -8,7 +8,7 @@ import ThemeSelector from "@/app/capsule/create/components/ThemeSelector";
 import UnlockSelector from "@/app/capsule/create/components/UnlockSelector";
 import PrivacySelector from "@/app/capsule/create/components/PrivacySelector";
 
-interface MediaItem {
+export interface MediaItem {
   url: string;
   type: "image" | "video" | "audio";
 }
@@ -28,28 +28,39 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
   const [theme, setTheme] = useState("");
   const [unlockDate, setUnlockDate] = useState("");
   const [privacy, setPrivacy] = useState<"private" | "collaborators" | "public">("private");
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (!title || !unlockDate) return alert("Title and unlock date are required!");
 
-    await fetch("/api/capsule/create", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title,
-        content,
-        media,
-        recipients,
-        collaborators: privacy === "collaborators" ? collaborators : [],
-        theme,
-        unlockDate,
-        privacy,
-        createdBy: userId,
-      }),
-    });
+    setLoading(true);
+    try {
+      const res = await fetch("/api/capsule/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          content,
+          media,
+          recipients,
+          collaborators: privacy === "collaborators" ? collaborators : [],
+          theme,
+          unlockDate,
+          privacy,
+          createdBy: userId,
+        }),
+      });
 
-    router.push("/dashboard");
-    router.refresh(); // real-time dashboard update
+      if (!res.ok) throw new Error("Failed to create capsule");
+
+      router.push("/dashboard");
+      router.refresh();
+    } catch (err: any) {
+      alert(err.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -71,18 +82,27 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
         onChange={(e) => setContent(e.target.value)}
       />
 
+      {/* Uploadthing Media Uploader */}
       <MediaUploader setMedia={setMedia} />
+
       <ThemeSelector theme={theme} setTheme={setTheme} />
       <RecipientInput recipients={recipients} setRecipients={setRecipients} />
       <UnlockSelector unlockDate={unlockDate} setUnlockDate={setUnlockDate} />
       <PrivacySelector privacy={privacy} setPrivacy={setPrivacy} />
 
       {privacy === "collaborators" && (
-        <RecipientInput recipients={collaborators} setRecipients={setCollaborators} />
+        <RecipientInput
+          recipients={collaborators}
+          setRecipients={setCollaborators}
+        />
       )}
 
-      <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
-        Create Capsule
+      <button
+        type="submit"
+        disabled={loading}
+        className="bg-green-600 text-white px-4 py-2 rounded"
+      >
+        {loading ? "Saving..." : "Create Capsule"}
       </button>
     </form>
   );
