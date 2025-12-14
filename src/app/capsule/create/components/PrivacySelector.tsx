@@ -8,9 +8,8 @@ interface Props {
 export default function PrivacySelector({ privacy, setPrivacy }: Props) {
   return (
     <div className="space-y-1">
-      <label className="font-semibold">Privacy</label>
       <select
-        className="border p-2 rounded w-full"
+        className="border p-2 rounded w-full text-gray-800"
         value={privacy}
         onChange={(e) =>
           setPrivacy(e.target.value as "private" | "collaborators" | "public")

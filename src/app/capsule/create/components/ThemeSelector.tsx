@@ -10,9 +10,8 @@ export default function ThemeSelector({ theme, setTheme }: ThemeSelectorProps) {
 
   return (
     <div className="space-y-2">
-      <label className="font-semibold">Theme</label>
       <select
-        className="border p-2 rounded w-full"
+        className="border p-2 rounded w-full text-gray-700"
         value={theme}
         onChange={(e) => setTheme(e.target.value)}
       >

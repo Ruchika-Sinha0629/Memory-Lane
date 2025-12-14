@@ -45,8 +45,6 @@ export default function Comments({ capsuleId }: CommentsProps) {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold">Comments</h3>
-
       <textarea
         className="w-full border rounded p-2"
         placeholder="Share how this made you feel..."

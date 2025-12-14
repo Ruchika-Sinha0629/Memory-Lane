@@ -130,7 +130,7 @@ export default function EditCapsulePage() {
               Capsule Title
             </label>
             <input
-              className="w-full border-2 border-gray-200 rounded-xl p-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none"
+              className="w-full border-2 border-gray-200 rounded-xl p-4 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none text-gray-900"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="Enter a memorable title..."
@@ -143,7 +143,7 @@ export default function EditCapsulePage() {
               Content
             </label>
             <textarea
-              className="w-full border-2 border-gray-200 rounded-xl p-4 min-h-[200px] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none resize-none"
+              className="w-full border-2 border-gray-200 rounded-xl p-4 min-h-[200px] focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all duration-200 outline-none resize-none text-gray-900"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write your memory here..."

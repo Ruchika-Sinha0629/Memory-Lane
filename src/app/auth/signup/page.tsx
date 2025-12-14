@@ -153,7 +153,7 @@ export default function SignUpPage() {
               <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
               <input
                 placeholder="Your Name"
-                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -164,7 +164,7 @@ export default function SignUpPage() {
               <input
                 type="email"
                 placeholder="you@example.com"
-                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
@@ -175,7 +175,7 @@ export default function SignUpPage() {
               <input
                 type="password"
                 placeholder="••••••••"
-                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />

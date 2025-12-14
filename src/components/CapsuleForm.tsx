@@ -136,7 +136,7 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
             </label>
             <input
               placeholder="Give your memory a meaningful title..."
-              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
@@ -150,7 +150,7 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
             </label>
             <textarea
               placeholder="Write your memory, story, or message..."
-              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none min-h-32 resize-y"
+              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none min-h-32 resize-y text-gray-900"
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
@@ -179,7 +179,7 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
             </label>
             <input
               placeholder="Enter email addresses separated by commas"
-              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+              className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
               value={recipients.join(", ")}
               onChange={(e) =>
                 setRecipients(
@@ -216,7 +216,7 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
               </label>
               <input
                 placeholder="Enter collaborator email addresses separated by commas"
-                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none"
+                className="w-full border-2 border-gray-200 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 p-3 rounded-xl transition-all duration-300 outline-none text-gray-900"
                 value={collaborators.join(", ")}
                 onChange={(e) =>
                   setCollaborators(

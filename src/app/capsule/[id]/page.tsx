@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-
 import CountdownTimer from "@/components/CountDownTimer";
 import RevealAnimation from "./components/RevealAnimation";
 import Comments from "./components/Comments";
@@ -22,7 +21,9 @@ interface Capsule {
   media: MediaItem[];
   unlockDate: string;
   isUnlocked: boolean;
-  reactions?: Record<string, number>;
+  reactions?: {
+    hearts?: string[]; 
+  };
   caption?: string;
   summary?: string;
 }
@@ -367,7 +368,7 @@ export default function CapsulePage() {
             </div>
 
             {/* Comments */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-gray-800">
               <h3 className="text-xl font-bold text-gray-800 mb-4">Comments</h3>
               <Comments capsuleId={capsule._id} />
             </div>
