@@ -25,15 +25,14 @@ export async function POST(req: NextRequest) {
       capsule.isUnlocked = true;
       await capsule.save();
 
-      // ✅ Pass a single object to match sendUnlockEmails signature
       await sendUnlockEmails({
         creatorEmail: capsule.createdBy,
-        recipients: capsule.recipients || [],
+        collaborators: capsule.collaborators,
+        recipients: capsule.recipients,
         title: capsule.title,
         capsuleId: capsule._id.toString(),
       });
     }
-
     return NextResponse.json({ isUnlocked: capsule.isUnlocked });
   } catch (err) {
     console.error("UNLOCK ERROR:", err);

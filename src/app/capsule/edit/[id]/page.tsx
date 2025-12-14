@@ -33,7 +33,6 @@ export default function EditCapsulePage() {
         return res.json();
       })
       .then((data) => {
-        // Only allow edit if not unlocked and user can edit
         if (data.capsule.isUnlocked || !data.canEdit) {
           router.push(`/capsule/${id}`);
           return;
@@ -50,7 +49,6 @@ export default function EditCapsulePage() {
       });
   }, [id, session, router]);
 
-  // 🔹 Save changes
   const handleSave = async () => {
     setSaving(true);
     setError("");
