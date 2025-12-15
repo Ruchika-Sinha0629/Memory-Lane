@@ -79,7 +79,7 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
       recipients,
       collaborators: privacy === "collaborators" ? collaborators : [],
       theme,
-      unlockDate,
+      unlockDate: new Date(unlockDate).toISOString(),
       privacy,
       caption,
       summary,
@@ -209,10 +209,12 @@ export default function CapsuleForm({ userId }: CapsuleFormProps) {
             </label>
             <UnlockSelector
               unlockDate={unlockDate}
-              setUnlockDate={setUnlockDate}
+              setUnlockDate={(value: string) => {
+                const isoDate = new Date(value).toISOString();
+                setUnlockDate(isoDate);
+              }}
             />
           </div>
-
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Privacy Settings
