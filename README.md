@@ -18,9 +18,7 @@ Create, collaborate, and relive cherished moments with photos, videos, audio, an
 ### 🤖 AI-Powered Assistance
 - Smart caption generation for media
 - Content summarization
-- Description enhancement
-- Memory idea suggestions
-- Powered by **Google Gemini 2.0 Flash**
+- Powered by **Google Gemini 2.5 Flash**
 
 ### ⏳ Smart Capsule Management
 - **4-step creation wizard**
@@ -82,7 +80,7 @@ Childhood 🧒 • Family History 👨‍👩‍👧‍👦 • College Years �
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/memorylane.git
+git clone https://github.com/Ruchika-Sinha0629/Memory-Lane.git
 cd memorylane
 
 # Install dependencies
@@ -194,20 +192,65 @@ memorylane/
 
 ### Capsule Model
 ```typescript
-{
-  title: string
-  description?: string
-  ownerId: ObjectId → User
-  collaborators: ObjectId[] → User
-  recipientEmails: string[]
-  unlockDate: Date
-  status: 'locked' | 'unlocked'
-  theme: 'Childhood' | 'Family History' | 'College Years' | 'Wedding' | 
-         'Travel Adventures' | 'Career Milestones' | 'Friendship' | 'Other'
-  privacy: 'private' | 'public' | 'recipients-only'
-  mediaIds: ObjectId[] → Media
-  timestamps: { createdAt, updatedAt }
-}
+import mongoose, { Schema, models } from "mongoose";
+
+const MediaSchema = new Schema({
+  url: String,
+  type: {
+    type: String,
+    enum: ["image", "video", "audio"],
+  },
+});
+
+const CapsuleSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    content: String,
+
+    media: [MediaSchema],
+
+    recipients: {
+      type: [String],
+      default: [],
+    },
+
+    collaborators: {
+      type: [String],
+      default: [],
+    },
+
+    theme: String,
+
+    privacy: {
+      type: String,
+      enum: ["private", "collaborators", "public"],
+      default: "private",
+    },
+
+    unlockDate: { type: Date, required: true },
+    isUnlocked: { type: Boolean, default: false },
+
+     reactions: {
+    hearts: { type: [String], default: [] },
+  },
+
+    summary: {
+  type: String,
+  default: "",
+},
+
+caption: {
+  type: String,
+  default: "",
+},
+
+    createdBy: { type: String, required: true }, 
+  },
+  { timestamps: true }
+);
+
+export default models.Capsule || mongoose.model("Capsule", CapsuleSchema);
+
 ```
 
 **Additional Models:** User • Comment
@@ -217,7 +260,7 @@ memorylane/
 ## 🚢 Deployment on Vercel
 
 ### One-Click Deploy
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/your-username/memorylane)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=(https://github.com/Ruchika-Sinha0629/Memory-Lane.git))
 
 ### Manual Steps
 
