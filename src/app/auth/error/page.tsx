@@ -1,12 +1,7 @@
-"use client";
-
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
-export default function AuthErrorPage() {
-  const params = useSearchParams();
-  const error = params.get("error");
-
+export default function AuthErrorPage({ searchParams }: { searchParams: { error?: string } }) {
+  const error = searchParams.error;
   const errorMessage =
     error === "CredentialsSignin"
       ? "Invalid email or password"
