@@ -8,13 +8,13 @@ import { Lock, Unlock, Edit, Eye, Tag } from "lucide-react";
 
 interface CapsuleCardProps {
   capsule: Capsule;
-  canEdit: boolean; // creator OR collaborator (passed from parent)
+  canEdit: boolean;
 }
 
 export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
   const [isUnlocked, setIsUnlocked] = useState(capsule.isUnlocked);
 
-  // 🔁 Poll server every 30s until unlocked
+  // Poll server every 30s until unlocked
   useEffect(() => {
     if (isUnlocked) return;
 
@@ -40,11 +40,9 @@ export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
 
   return (
     <div className="group relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden">
-      {/* Gradient Border Effect */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-sm -z-10"></div>
-      
+
       <div className="relative bg-white rounded-2xl p-6 space-y-4">
-        {/* Header */}
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
             <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2">
@@ -55,13 +53,12 @@ export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
               <span>{capsule.theme || "Others"}</span>
             </div>
           </div>
-          
-          {/* Lock/Unlock Icon */}
-          <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-            isUnlocked 
-              ? "bg-purple-600" 
-              : "bg-gray-400"
-          }`}>
+
+          <div
+            className={`w-12 h-12 rounded-full flex items-center justify-center ${
+              isUnlocked ? "bg-purple-600" : "bg-gray-400"
+            }`}
+          >
             {isUnlocked ? (
               <Unlock className="w-6 h-6 text-white" />
             ) : (
@@ -70,13 +67,10 @@ export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
 
-        {/* 🔒 LOCKED STATE */}
         {!isUnlocked && (
           <div className="space-y-4">
-            {/* ⏳ Countdown Timer */}
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4">
               <CountdownTimer
                 unlockDate={capsule.unlockDate}
@@ -90,7 +84,6 @@ export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
               <span>Capsule is locked and waiting...</span>
             </div>
 
-            {/* ✏️ Edit (only creator / collaborators) */}
             {canEdit && (
               <Link
                 href={`/capsule/edit/${capsule._id}`}
@@ -103,7 +96,6 @@ export default function CapsuleCard({ capsule, canEdit }: CapsuleCardProps) {
           </div>
         )}
 
-        {/* 🔓 UNLOCKED STATE */}
         {isUnlocked && (
           <div className="space-y-4">
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-4 border-2 border-purple-200">

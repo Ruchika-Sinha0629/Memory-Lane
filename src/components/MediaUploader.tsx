@@ -28,7 +28,7 @@ export default function MediaUploader({ setMedia }: MediaUploaderProps) {
         }));
 
         setMedia((prev) => [...prev, ...normalized]);
-        setUploaded(true); // ✅ mark upload done
+        setUploaded(true); 
       }}
       onUploadError={(err) => {
         console.error("Upload Error:", err);

@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  // Determine user permissions
+
   const canEdit =
     userEmail &&
     (capsule.createdBy === userEmail || capsule.collaborators.includes(userEmail));

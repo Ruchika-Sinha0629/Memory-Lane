@@ -30,7 +30,7 @@ export async function PUT(req: Request) {
       );
     }
 
-    // 🔒 PERMISSION CHECK
+    
     const canEdit =
       capsule.createdBy === session.user.email ||
       capsule.collaborators.includes(session.user.email);
@@ -39,7 +39,7 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
     }
 
-    // 🔒 LOCK AFTER UNLOCK DATE
+    
     const now = new Date();
     const unlockDate = new Date(capsule.unlockDate);
 
@@ -50,7 +50,7 @@ export async function PUT(req: Request) {
       );
     }
 
-    // ✅ Normalize media types
+  
     const normalizedMedia = (media || []).map((m: any) => ({
       url: m.url,
       type: m.type.startsWith("image")

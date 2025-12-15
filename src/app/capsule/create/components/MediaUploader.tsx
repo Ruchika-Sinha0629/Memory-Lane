@@ -23,7 +23,7 @@ export default function MediaUploader({
     setIsUploading(true);
 
     try {
-      // fake upload / replace with real upload logic
+      
       const uploaded = files.map((file) => {
         const type = file.type.split("/")[0] as
           | "image"
@@ -41,7 +41,7 @@ export default function MediaUploader({
       console.error(err);
       alert("Upload failed");
     } finally {
-      setIsUploading(false); // ✅ CRITICAL
+      setIsUploading(false); 
     }
   };
 

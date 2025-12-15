@@ -17,18 +17,18 @@ export async function POST(req: NextRequest) {
     const capsule = await Capsule.findById(capsuleId);
     if (!capsule) return NextResponse.json({ error: "Capsule not found" }, { status: 404 });
 
-    // Initialize hearts array if undefined
+  
     capsule.reactions = capsule.reactions || { hearts: [] };
 
     const userIndex = capsule.reactions.hearts.indexOf(userEmail);
     let liked = false;
 
     if (userIndex === -1) {
-      // Add like
+    
       capsule.reactions.hearts.push(userEmail);
       liked = true;
     } else {
-      // Remove like
+      
       capsule.reactions.hearts.splice(userIndex, 1);
       liked = false;
     }

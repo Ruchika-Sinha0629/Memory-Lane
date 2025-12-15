@@ -20,7 +20,7 @@ export default function Comments({ capsuleId }: CommentsProps) {
   const [comments, setComments] = useState<Comment[]>([]);
   const [text, setText] = useState("");
 
-  // Fetch comments
+
   useEffect(() => {
     fetch(`/api/comment/get?capsuleId=${capsuleId}`)
       .then((res) => res.json())

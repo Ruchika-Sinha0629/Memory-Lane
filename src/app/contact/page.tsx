@@ -15,13 +15,13 @@ export default function ContactPage() {
     e.preventDefault();
     setLoading(true);
 
-    // Simulate form submission
+    
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     setSuccess(true);
     setLoading(false);
 
-    // Reset form
+    
     setTimeout(() => {
       setName("");
       setEmail("");
@@ -33,14 +33,14 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50">
-      {/* Decorative Background Elements */}
+      
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative max-w-5xl mx-auto px-6 py-12">
-        {/* Header */}
+        
         <div className="text-center mb-12">
           <Link href="/" className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg mb-8 hover:shadow-xl transition-all duration-300">
             <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export default function ContactPage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Form */}
+        
           <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -154,9 +154,8 @@ export default function ContactPage() {
             </form>
           </div>
 
-          {/* Contact Information */}
           <div className="space-y-6">
-            {/* Info Cards */}
+            
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
               <div className="flex items-center gap-3 mb-6">
                 <svg className="w-8 h-8 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,7 +204,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* FAQ Shortcut */}
+          
             <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl shadow-xl p-8 border-2 border-purple-200">
               <div className="flex items-center gap-3 mb-4">
                 <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -244,7 +243,7 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* Back Button */}
+      
         <div className="text-center mt-8">
           <Link
             href="/"
@@ -258,7 +257,6 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className="relative bg-gradient-to-br from-gray-900 via-purple-900 to-indigo-900 text-white py-16 px-6 mt-16">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">

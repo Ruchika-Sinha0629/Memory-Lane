@@ -10,7 +10,7 @@ export default function CreateCapsulePage() {
 
   return (
     <div className="mt-10">
-      <CapsuleForm userId={session.user.email} /> {/* pass creator */}
+      <CapsuleForm userId={session.user.email} /> 
     </div>
   );
 }

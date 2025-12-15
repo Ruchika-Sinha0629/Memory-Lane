@@ -88,14 +88,14 @@ export default function CapsulePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-12 px-6">
-      {/* Decorative Background Elements */}
+      
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse delay-1000"></div>
       </div>
 
       <div className="relative max-w-4xl mx-auto space-y-6">
-        {/* Header Card */}
+        
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1">
@@ -178,7 +178,7 @@ export default function CapsulePage() {
           </div>
         ) : (
           <>
-            {/* Unlocked Banner */}
+            
             <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-indigo-600 rounded-3xl shadow-xl p-6 text-center">
               <div className="flex items-center justify-center gap-3 text-white">
                 <svg
@@ -200,7 +200,7 @@ export default function CapsulePage() {
               </div>
             </div>
 
-            {/* Content Card */}
+          
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
               <RevealAnimation
                 title={capsule.title}
@@ -208,7 +208,7 @@ export default function CapsulePage() {
               />
             </div>
 
-            {/* Media Display */}
+            
             {capsule.isUnlocked && capsule.media?.length > 0 && (
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
                 <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
@@ -284,7 +284,7 @@ export default function CapsulePage() {
               </div>
             )}
 
-            {/* AI Caption & Summary */}
+          
             {(capsule.caption || capsule.summary) && (
               <div className="bg-gradient-to-br from-purple-50 to-pink-50 backdrop-blur-sm rounded-3xl shadow-xl p-8 border-2 border-purple-200">
                 <div className="flex items-center gap-2 text-purple-700 font-semibold mb-6">
@@ -354,7 +354,7 @@ export default function CapsulePage() {
               </div>
             )}
 
-            {/* Reactions */}
+            
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8">
               <h3 className="text-xl font-bold text-gray-800 mb-4">
                 Reactions
@@ -367,7 +367,7 @@ export default function CapsulePage() {
               />
             </div>
 
-            {/* Comments */}
+            
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl p-8 text-gray-800">
               <h3 className="text-xl font-bold text-gray-800 mb-4">Comments</h3>
               <Comments capsuleId={capsule._id} />
